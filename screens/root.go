@@ -1,9 +1,10 @@
 package screens
 
 import (
-	"fmt"
+	"nectar/components"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 )
 
 type rootScreen struct{}
@@ -30,7 +31,8 @@ func (r *rootScreen) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (r *rootScreen) View() string {
-	return fmt.Sprintf(`Nectar - Version: %s - Build Date: %s
-Press 'a' to go to the auxiliary screen. Press 'q' to quit.
-`, globals.version, globals.buildDate)
+	return lipgloss.JoinVertical(
+		lipgloss.Top,
+		components.RootStatusBar(&globals),
+	)
 }

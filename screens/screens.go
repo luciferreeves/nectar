@@ -2,6 +2,7 @@ package screens
 
 import (
 	"nectar/build"
+	"nectar/types"
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -16,7 +17,7 @@ type ScreenManager struct {
 	currentScreen tea.Model
 }
 
-var globals Globals
+var globals types.Globals
 
 func (sm *ScreenManager) Init() tea.Cmd {
 	return sm.currentScreen.Init()
@@ -25,7 +26,7 @@ func (sm *ScreenManager) Init() tea.Cmd {
 func (sm *ScreenManager) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch m := msg.(type) {
 	case tea.WindowSizeMsg:
-		globals.width, globals.height = m.Width, m.Height
+		globals.Width, globals.Height = m.Width, m.Height
 		return sm, nil
 	case SwitchMsg:
 		sm.currentScreen = m.Screen
@@ -54,11 +55,11 @@ func Start() tea.Model {
 		height = 24
 	}
 
-	globals = Globals{
-		width:     width,
-		height:    height,
-		buildDate: build.Date,
-		version:   build.Version,
+	globals = types.Globals{
+		Width:     width,
+		Height:    height,
+		BuildDate: build.Date,
+		Version:   build.Version,
 	}
 
 	return &ScreenManager{currentScreen: _root()}
