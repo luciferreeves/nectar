@@ -1,17 +1,7 @@
 package build
 
-import "runtime/debug"
-
-// Version is dynamically set during build by the toolchain or overridden in the Makefile.
+// Version is set during build via ldflags
 var Version = "dev"
 
-// Date is dynamically set during build time in the Makefile.
+// Date is set during build via ldflags
 var Date = "unknown"
-
-func init() {
-	if Version == "dev" {
-		if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "(devel)" {
-			Version = info.Main.Version
-		}
-	}
-}
