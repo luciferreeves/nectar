@@ -1,6 +1,10 @@
 package screens
 
-import tea "github.com/charmbracelet/bubbletea"
+import (
+	"fmt"
+
+	tea "github.com/charmbracelet/bubbletea"
+)
 
 type rootScreen struct{}
 
@@ -26,5 +30,7 @@ func (r *rootScreen) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (r *rootScreen) View() string {
-	return "Welcome to Nectar!\nPress Ctrl+C to exit. Press 'a' to go to the auxiliary screen."
+	return fmt.Sprintf(`Nectar - Version: %s - Build Date: %s
+Press 'a' to go to the auxiliary screen. Press 'q' to quit.
+`, globals.version, globals.buildDate)
 }
