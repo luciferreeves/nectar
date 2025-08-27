@@ -1,6 +1,7 @@
 package screens
 
 import (
+	"nectar/build"
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -53,7 +54,12 @@ func Start() tea.Model {
 		height = 24
 	}
 
-	globals = Globals{width: width, height: height}
+	globals = Globals{
+		width:     width,
+		height:    height,
+		buildDate: build.Date,
+		version:   build.Version,
+	}
 
 	return &ScreenManager{currentScreen: _root()}
 }
