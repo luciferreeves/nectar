@@ -1,4 +1,4 @@
-package components
+package root
 
 import (
 	"nectar/styles"
@@ -7,16 +7,18 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
-func RootStatusBar(globals *types.Globals) string {
+func StatusBar(globals *types.Globals) string {
 	w := lipgloss.Width
 
 	helpText := lipgloss.JoinHorizontal(
 		lipgloss.Top,
 		styles.PaddedHorizontal.Render("↑/k: up"),
 		styles.PaddedHorizontal.Render("↓/j: down"),
-		styles.PaddedHorizontal.Render("↵: select"),
-		styles.PaddedHorizontal.Render("^n: new connection"),
+		styles.PaddedHorizontal.Render("↹: next"),
+		styles.PaddedHorizontal.Render("^n: new"),
 		styles.PaddedHorizontal.Render("^↵: connect"),
+		styles.PaddedHorizontal.Render("^s: save"),
+		styles.PaddedHorizontal.Render("^t: test"),
 		styles.PaddedHorizontal.Render("^d: delete"),
 		styles.PaddedHorizontal.Render("^c: quit"),
 	)
